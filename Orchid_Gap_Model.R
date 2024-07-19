@@ -1,92 +1,94 @@
-#Load Packages - Tidymodels and dplyr packages
-library(dplyr)
+# Install and load necessary packages
 library(tidymodels)
+library(dplyr)
+library(yardstick)  # For metrics
 
-#Load Data 
+# Load data
 orchiddata <- read.csv("Orchid_Model_Data.csv")
 
-#converting outcome variable to a factor
+# Convert the outcome variable to a factor
 orchiddata$seedbank_conserved <- as.factor(orchiddata$seedbank_conserved)
 
+# Data resampling - create training and test datasets
+set.seed(123)
+orchid_split <- initial_split(orchiddata, prop = 0.75, strata = seedbank_conserved)
 
-#Data Re sampling - creating training and test datasets
-orchid_split <- initial_split(orchiddata, prop = 0.75,
-                               strata = seedbank_conserved)
+# Create training data
+orchid_training <- training(orchid_split)
 
-#Create the training data
-orchid_training <- orchid_split %>% 
-  training()
+# Create test data
+orchid_test <- testing(orchid_split)
 
-#Create the test data
-orchid_test <- orchid_split %>% 
-  testing()
+# Count the number of instances per class
+class_counts <- table(orchid_training$seedbank_conserved)
+print(class_counts)
 
+# Identify minority and majority classes
+minority_class <- names(class_counts)[which.min(class_counts)]
+majority_class <- names(class_counts)[which.max(class_counts)]
 
-#Check the number of rows
-nrow(orchid_training)
-nrow(orchid_test)
+# Calculate number of additional samples needed
+num_additional_samples <- class_counts[majority_class] - class_counts[minority_class]
 
+set.seed(123)  # For reproducibility
+minority_samples <- orchid_training %>%
+  filter(seedbank_conserved == minority_class) %>%
+  slice_sample(n = num_additional_samples, replace = TRUE)
 
-#Fitting logistic regression model
-#Specify a logistic regression model
-logistic_model <- logistic_red() %>% 
-  set_engine('glm') %>% 
-  set_mode('classification')
+balanced_training <- bind_rows(
+  orchid_training %>% filter(seedbank_conserved == majority_class),
+  minority_samples
+)
 
-#Building the Feature Engineering Pipeline
-#Specify Feature Engineering Steps with 'Recipes'.
-orchids_recipe <- recipe(seedbank_conserved ~ region + lifeform_category + climate_description +
-                           threat_pred + redlist_category,
-                         data = orchid_training) %>%
-  step_corr(all_numeric(), threshold = 0.9) %>%
-  step_normalize(all_numeric()) %>%
-  step_dummy(all_nominal(), -all_outcomes())
+# Check the class distribution after oversampling
+print(table(balanced_training$seedbank_conserved))
 
+# Check the number of rows
+print(nrow(orchid_training))
+print(nrow(orchid_test))
 
-#Recipe training
-orchid_recipe_prep <- orchids_recipe %>%
-  prep(training = orchid_training)
+# Identify nominal predictors
+nominal_predictors <- c("region", "lifeform_category", "climate_description", "iucn_assessed", "threat_pred")
 
-#Preprocess training data
-#Apply our trained recipe to the training data and store results in orchid_training_prep
-orchids_training_prep <- orchid_recipe_prep %>%
-  bake(new_data = NULL)
-orchids_training_prep
+# Define the recipe
+rec <- recipe(seedbank_conserved ~ region + lifeform_category + climate_description
+              + iucn_assessed + threat_pred, data = balanced_training) %>%
+  step_normalize(all_numeric_predictors()) %>%
+  step_dummy(all_of(nominal_predictors), one_hot = TRUE)
 
-#Preprocess test data
-orchids_test_prep <- orchid_recipe_prep %>%
-  bake(new_data = orchid_test)
-orchids_test_prep
+prep_rec <- prep(rec)
+bake(prep_rec, new_data = balanced_training) %>% names() 
 
+preprocessed_training <- bake(prep_rec, new_data = balanced_training)
+print(names(preprocessed_training))# Define the Random Forest model
+rf_model <- rand_forest(trees = 50) %>%
+  set_engine("ranger") %>%
+  set_mode("classification")
 
-#Model fitting and predictions
-# Fit to training data using preprocessed training data
-logistic_fit <- logistic_model %>% 
-  fit(seedbank_conserved ~ region + lifeform_category + climate_description +
-        threat_pred + redlist_category,
-      data = orchids_training_prep)
+# Create workflows for each model
+rf_wf <- workflow() %>%
+  add_model(rf_model) %>%
+  add_recipe(rec)
 
-# Obtain model predictions
-class_preds <- predict(logistic_fit, new_data = orchids_test_prep,
-                       type = 'class')
+# Fit the model
+trained_model <- rf_wf %>%
+  fit(data = balanced_training)
 
-prob_preds <- predict(logistic_fit, 
-                      new_data = orchids_test_prep, 
-                      type = 'prob')
+# Make predictions on the test set
+rf_predictions <- trained_model %>%
+  predict(new_data = orchid_test) %>%
+  bind_cols(orchid_test)
 
+# Evaluate Predictions
+# Use the `yardstick` functions correctly
+conf_matrix <- conf_mat(rf_predictions, truth = seedbank_conserved, estimate = .pred_class)
+accuracy_score <- accuracy(rf_predictions, truth = seedbank_conserved, estimate = .pred_class)
+roc_auc_score <- roc_auc(rf_predictions, truth = seedbank_conserved, estimate = .pred_class)
 
-#combine actual outcome variable from test dataset
-orchid_results <- orchid_test %>%
-  select(seedbank_conserved) %>%
-  bind_cols(class_preds, prob_preds)
-
-#produces model results dataframe
-orchid_results 
-
-#model evaluation
-#confusion matrix 
-orchid_results %>%
-  conf_mat(truth = seedbank_conserved, estimate = .pred_class)
+print(conf_matrix)
+print(accuracy_score)
+print(roc_auc_score)
 
 
-
+names(balanced_training)
+names(orchid_test)
