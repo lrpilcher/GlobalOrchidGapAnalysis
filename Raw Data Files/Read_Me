@@ -1,1 +1,5 @@
-Read Me
+Raw Data Files include the following:
+
+1. Complete Main Dataset - used for analysis during the project
+2. Model Dataset - a reduced file with missing values removed, used for the Random Forest Model. 
+3. Occurence Matrix - Used to understand number of native Orchids per country
