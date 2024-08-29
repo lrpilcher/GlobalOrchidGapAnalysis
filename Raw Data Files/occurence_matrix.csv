@@ -1,8 +1,180 @@
-na,0
-a,<20
-b,<60
-c,<200
-d,<800
-e,<2000
-f,<4000
-g,<8000
+﻿bot_code,bot_type,bot_name,native_orchids,conserved_orchids,bin_code,propotion_conserved,no_threat,prop_threatened
+GBR,incomplete_sov,Great Britain and island territories,86,47,c,0.546511628,13.00,15.00
+ITA,multi_sov,Italy and San Marino,122,60,c,0.491803279,17.00,14.00
+SPA,multi_sov,"Spain, Andorra and Gibraltar",84,39,c,0.464285714,5.00,6.00
+CZE,multi_sov,Czech Republic and Slovakia,60,26,c,0.433333333,0.00,0.00
+FIN,entire_sov,Finland,31,12,b,0.387096774,0.00,0.00
+CHL,entire_sov,Chile and territories,88,33,c,0.375,51.00,58.00
+TCS,multi_sov,"Armenia, Azerbaijan and Georgia",62,19,c,0.306451613,5.00,8.00
+BGM,multi_sov,Belgium and Luxembourg,48,14,b,0.291666667,0.00,0.00
+AUS,entire_sov,Australia and territories,2206,465,f,0.210788758,883.00,40.00
+PAL,multi_sov,Israel and Jordan,32,6,b,0.1875,2.00,6.00
+DEU,entire_sov,Germany,67,11,c,0.164179104,2.00,3.00
+AUT,multi_sov,Austria and Liechtenstein,74,11,c,0.148648649,6.00,8.00
+MDG,entire_sov,Madagascar,904,134,e,0.148230088,758.00,84.00
+BWA,entire_sov,Botswana,26,3,b,0.115384615,1.00,4.00
+LBS,multi_sov,Lebanon and Syria,46,5,b,0.108695652,3.00,7.00
+PRT,entire_sov,"Portugal, the Azores, Madeira and Savage Islands",56,6,b,0.107142857,7.00,13.00
+KAZ,entire_sov,Kazakhstan,19,2,a,0.105263158,1.00,5.00
+LEE,multi_sov,Carribean Leeward Islands,113,11,c,0.097345133,23.00,20.00
+NOR,entire_sov,"Norway, Bouvet Island and Svalbard",33,3,b,0.090909091,0.00,0.00
+ZAF,entire_sov,South Africa,860,70,e,0.081395349,262.00,30.00
+BLT,multi_sov,"Baltic States of Estonia, Latvia, Lithuania and Kaliningrad",38,3,b,0.078947368,0.00,0.00
+BFA,entire_sov,Burkina Faso,27,2,b,0.074074074,0.00,0.00
+IRE,multi_sov,Ireland and Northern Ireland,28,2,b,0.071428571,1.00,4.00
+KGZ,multi_sov,Kyrgyzstan,14,1,a,0.071428571,0.00,0.00
+GRC,entire_sov,Greece,203,13,d,0.064039409,8.00,4.00
+KHM,entire_sov,Cambodia,313,18,d,0.057507987,55.00,18.00
+FRA,multi_sov,"France, Jersey, Channel Islands and Monaco",93,5,c,0.053763441,6.00,6.00
+CHE,entire_sov,Switzerland,64,3,c,0.046875,2.00,3.00
+CYP,multi_sov,Cyprus,43,2,b,0.046511628,1.00,2.00
+POL,entire_sov,Poland,49,2,b,0.040816327,0.00,0.00
+ZMB,entire_sov,Zambia,401,16,d,0.039900249,110.00,27.00
+COM,multi_sov,Comoros and Mayotte,109,4,c,0.036697248,62.00,56.00
+GNB,entire_sov,Guinea-Bissau,34,1,b,0.029411765,0.00,0.00
+MWI,entire_sov,Malawi,402,10,d,0.024875622,101.00,25.00
+SLE,entire_sov,Sierra Leone,166,3,c,0.018072289,21.00,13.00
+BHS,entire_sov,Bahamas,56,1,b,0.017857143,14.00,25.00
+USA,incomplete_sov,"United States of America and Puerto Rico, Wake Island, Guam and Northern Mariana Islands, Howland and Baker Islands, Aleutian Islands",2243,38,f,0.016941596,86.00,4.00
+ROU,entire_sov,Romania,64,1,c,0.015625,2.00,3.00
+THA,entire_sov,Thailand,1340,19,e,0.014179104,473.00,35.00
+TUR,entire_sov,Turkey,143,2,c,0.013986014,10.00,7.00
+NGA,entire_sov,Nigeria,296,4,d,0.013513514,54.00,18.00
+GGI,multi_sov,Gulf of Guinea islands,205,2,d,0.009756098,65.00,32.00
+BLZ,entire_sov,Belize,308,3,d,0.00974026,30.00,10.00
+CAN,incomplete_sov,Canada excluding Newfoundland,416,4,d,0.009615385,3.00,1.00
+CIV,entire_sov,Cote d'Ivoire,239,2,d,0.008368201,30.00,13.00
+NPL,entire_sov,Nepal,495,4,d,0.008080808,80.00,16.00
+WIN,multi_sov,Windward Islands and Barbados,130,1,c,0.007692308,21.00,16.00
+BOR,multi_sov,Borneo,1716,13,e,0.007575758,859.00,50.00
+CHN,incomplete_sov,China,2474,18,f,0.007275667,866.00,35.00
+GHA,entire_sov,Ghana,174,1,c,0.005747126,11.00,6.00
+MOZ,entire_sov,Mozambique,192,1,c,0.005208333,27.00,14.00
+JPN,entire_sov,Japan,390,2,d,0.005128205,134.00,34.00
+MEX,entire_sov,Mexico,2789,13,f,0.004661169,1002.00,36.00
+IND,incomplete_sov,India excluding East Himalaya,1213,5,e,0.004122012,330.00,27.00
+FRT,incomplete_sov,French island territories and French Guiana,1009,4,e,0.003964321,248.00,25.00
+NIC,incomplete_sov,Nicaragua,530,2,d,0.003773585,99.00,19.00
+GAB,entire_sov,Gabon,284,1,d,0.003521127,75.00,26.00
+KEN,incomplete_sov,Kenya,287,1,d,0.003484321,66.00,23.00
+COD,entire_sov,Democratic Republic of the Congo,579,2,d,0.003454231,158.00,27.00
+CRI,incomplete_sov,Costa Rica,1750,6,e,0.003428571,908.00,52.00
+DOM,entire_sov,Dominican Republic,298,1,d,0.003355705,149.00,50.00
+PHL,entire_sov,Philippines,1206,4,e,0.00331675,731.00,61.00
+UGA,entire_sov,Uganda,311,1,d,0.003215434,47.00,15.00
+ARG,entire_sov,Argentina,315,1,d,0.003174603,68.00,22.00
+BRA,entire_sov,Brazil,4216,13,g,0.003083491,1388.00,33.00
+MMR,incomplete_sov,Myanmar,1069,3,e,0.002806361,343.00,32.00
+SLV,entire_sov,El Salvador,385,1,d,0.002597403,66.00,17.00
+ECU,entire_sov,Ecuador,4318,10,g,0.002315887,2940.00,68.00
+CMR,entire_sov,Cameroon,432,1,d,0.002314815,139.00,32.00
+GTM,entire_sov,Guatemala,942,2,e,0.002123142,359.00,38.00
+NWG,multi_sov,New Guinea island,2834,6,f,0.002117149,178.00,6.00
+GUY,entire_sov,Guyana,575,1,d,0.00173913,52.00,9.00
+LAO,entire_sov,Laos,590,1,d,0.001694915,164.00,28.00
+HND,incomplete_sov,Honduras,625,1,d,0.0016,104.00,17.00
+VEN,incomplete_sov,Venezuela,1744,2,e,0.001146789,451.00,26.00
+PER,entire_sov,Peru,2511,2,f,0.000796495,1375.00,55.00
+PAN,entire_sov,Panama,1428,1,e,0.00070028,706.00,49.00
+COL,incomplete_sov,Colombia,4357,1,g,0.000229516,2645.00,61.00
+AFG,entire_sov,Afghanistan,18,0,a,0,1.00,6.00
+ALB,entire_sov,Albania,62,0,c,0,0.00,0.00
+AND,multi_sov,Andaman Islands,128,0,c,0,26.00,20.00
+AGO,entire_sov,Angola and Cabinda,247,0,d,0,40.00,16.00
+GST,multi_sov,"Bahrain, Qatar and United Arab Emirates",1,0,a,0,0.00,0.00
+ESP,incomplete_sov,Balearic Islands and Canary Islands,49,0,b,0,3.00,6.00
+BGD,entire_sov,Bangladesh,271,0,d,0,20.00,7.00
+BLR,entire_sov,Belarus,39,0,b,0,0.00,0.00
+BEN,entire_sov,Benin,50,0,b,0,1.00,2.00
+EHM,multi_sov,Bhutan and East Himalayan India,804,0,e,0,206.00,26.00
+PNG,incomplete_sov,Bismarck Archipelago,258,0,d,0,33.00,13.00
+BOL,entire_sov,Bolivia,1429,0,e,0,621.00,43.00
+YUG,multi_sov,"Bosnia and Herzegovina, Croatia, Kosovo, Montenegro, North Macedonia, Serbia and Slovenia",91,0,c,0,3.00,3.00
+SOL,multi_sov,Bougainville Island and Solomon Islands excluding Santa Cruz Islands,314,0,d,0,56.00,18.00
+BGR,entire_sov,Bulgaria,59,0,b,0,0.00,0.00
+BDI,entire_sov,Burundi,205,0,d,0,25.00,12.00
+CPV,entire_sov,Cape Verde,1,0,a,0,0.00,0.00
+CRL,multi_sov,Caroline Islands,120,0,c,0,80.00,67.00
+CAF,entire_sov,Central African Republic,183,0,c,0,19.00,10.00
+CPI,multi_sov,Central American Pacific Islands,6,0,a,0,3.00,50.00
+TCD,entire_sov,Chad,26,0,b,0,0.00,0.00
+CUB,entire_sov,Cuba,332,0,d,0,160.00,48.00
+DNK,entire_sov,"Denmark, Faroe Islands and Greenland",50,0,b,0,0.00,0.00
+DJI,entire_sov,Djibouti,2,0,a,0,0.00,0.00
+EGY,incomplete_sov,Egypt,1,0,a,0,0.00,0.00
+GNQ,incomplete_sov,Equatorial Guinea,143,0,c,0,28.00,20.00
+ERI,entire_sov,Eritrea,33,0,b,0,1.00,3.00
+SWZ,entire_sov,Eswatini,101,0,c,0,5.00,5.00
+ETH,entire_sov,Ethiopia,190,0,c,0,43.00,23.00
+FJI,entire_sov,Fiji,174,0,c,0,52.00,30.00
+GIN,entire_sov,Guinea,204,0,d,0,26.00,13.00
+HAI,multi_sov,Haiti,201,0,d,0,93.00,46.00
+HUN,entire_sov,Hungary,52,0,b,0,0.00,0.00
+ISL,entire_sov,Iceland,7,0,a,0,0.00,0.00
+IRN,entire_sov,Iran,53,0,b,0,4.00,8.00
+IRQ,entire_sov,Iraq,30,0,b,0,1.00,3.00
+JAM,entire_sov,Jamaica,224,0,d,0,74.00,33.00
+IDN,incomplete_sov,"Java, Malaku, Sumatra and Sulawesi",3096,0,f,0,1218.00,39.00
+KIR,incomplete_sov,Kiribati excluding Line Islands,0,0,na,0,0.00,0.00
+KWT,entire_sov,Kuwait,0,0,na,0,0.00,0.00
+LSO,entire_sov,Lesotho,62,0,c,0,2.00,3.00
+LSI,multi_sov,"Lesser Sunda Islands, Tanimbar Islands, Aru Islands and southern Malaku Islands",291,0,d,0,60.00,21.00
+LBR,entire_sov,Liberia,215,0,d,0,26.00,12.00
+LBY,entire_sov,Libya,16,0,a,0,1.00,6.00
+LIN,multi_sov,Line Islands,0,0,na,0,0.00,0.00
+MDV,entire_sov,Maldives,1,0,a,0,0.00,0.00
+MLI,entire_sov,Mali,17,0,a,0,0.00,0.00
+MHL,entire_sov,Marshall Islands,0,0,na,0,0.00,0.00
+MRT,entire_sov,Mauritania,0,0,na,0,0.00,0.00
+MUS,entire_sov,Mauritius,83,0,c,0,29.00,35.00
+MNG,entire_sov,Mongolia,24,0,b,0,0.00,0.00
+MOR,multi_sov,Morocco and Ceuta,44,0,b,0,0.00,0.00
+NAM,entire_sov,Namibia,20,0,b,0,1.00,5.00
+NRU,entire_sov,Nauru,0,0,na,0,0.00,0.00
+NLD,incomplete_sov,Netherlands and Netherlands Antilles,40,0,b,0,0.00,0.00
+NZL,incomplete_sov,New Zealand and territories,270,0,d,0,90.00,33.00
+NFL,multi_sov,Newfoundland and Saint Pierre and Miquelon,36,0,b,0,0.00,0.00
+NER,entire_sov,Niger,3,0,a,0,0.00,0.00
+OMN,incomplete_sov,Oman,9,0,a,0,0.00,0.00
+PAK,incomplete_sov,Pakistan,45,0,b,0,3.00,7.00
+PRY,entire_sov,Paraguay,218,0,d,0,35.00,16.00
+MLY,multi_sov,Peninsular Malaysia and Singapore,990,0,e,0,288.00,29.00
+COG,entire_sov,Republic of the Congo,186,0,c,0,19.00,10.00
+RUS,incomplete_sov,Russia excluding Kaliningrad,695,0,d,0,14.00,2.00
+RWA,entire_sov,Rwanda,239,0,d,0,62.00,26.00
+SAM,multi_sov,Samoa and American Samoa,103,0,c,0,16.00,16.00
+SLB,incomplete_sov,Santa Cruz Islands,38,0,b,0,6.00,16.00
+SAR,incomplete_sov,Sardinia,53,0,b,0,1.00,2.00
+SAU,entire_sov,Saudi Arabia,9,0,a,0,0.00,0.00
+SEN,entire_sov,Senegal,43,0,b,0,3.00,7.00
+SYC,entire_sov,Seychelles,28,0,b,0,6.00,21.00
+SIC,multi_sov,Sicily and Malta,56,0,b,0,4.00,7.00
+SOM,multi_sov,Somalia and Somaliland,11,0,a,0,1.00,9.00
+SCS,multi_sov,South China Sea islands,1,0,a,0,0.00,0.00
+KOR,multi_sov,South Korea and North Korea,114,0,c,0,28.00,25.00
+SWC,multi_sov,Southwest Caribbean islands,2,0,a,0,0.00,0.00
+LKA,entire_sov,Sri Lanka,199,0,c,0,89.00,45.00
+SUD,multi_sov,Sudan and South Sudan,93,0,c,0,2.00,2.00
+SUR,entire_sov,Surinam,392,0,d,0,22.00,6.00
+SWE,entire_sov,Sweden,43,0,b,0,1.00,2.00
+TWN,entire_sov,Taiwan,457,0,d,0,220.00,48.00
+TJK,incomplete_sov,Tajikistan,15,0,a,0,1.00,7.00
+TZA,entire_sov,Tanzania,585,0,d,0,213.00,36.00
+GMB,entire_sov,The Gambia,7,0,a,0,0.00,0.00
+TGO,entire_sov,Togo,86,0,c,0,2.00,2.00
+TOK,multi_sov,Tokelau and Northern Cook Islands,0,0,na,0,0.00,0.00
+TON,entire_sov,Tonga,49,0,b,0,1.00,2.00
+TTO,entire_sov,Trinidad and Tobago,225,0,d,0,8.00,4.00
+TUN,entire_sov,Tunisia,40,0,b,0,0.00,0.00
+TKM,entire_sov,Turkmenistan,14,0,a,0,2.00,14.00
+TUV,entire_sov,Tuvalu,0,0,na,0,0.00,0.00
+UKR,multi_sov,Ukraine and Moldova,47,0,b,0,1.00,2.00
+URY,entire_sov,Uruguay,60,0,c,0,20.00,33.00
+UZB,incomplete_sov,Uzbekistan,13,0,a,0,1.00,8.00
+VUT,entire_sov,Vanuatu,194,0,c,0,26.00,12.00
+VNM,entire_sov,Vietnam,1291,0,e,0,550.00,43.00
+WHM,multi_sov,West Himalaya,267,0,d,0,26.00,10.00
+WSA,multi_sov,Western Sahara,0,0,na,0,0.00,0.00
+YEM,entire_sov,Yemen,28,0,b,0,2.00,7.00
+ZWE,entire_sov,Zimbabwe,335,0,d,0,50.00,15.00
+DZA,entire_sov,Algeria,52,0,b,,1.00,2.00
