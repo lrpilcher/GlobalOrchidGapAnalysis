@@ -183,8 +183,14 @@ is.data.frame(rf_predictions_entire)
 #Climate Figure
 climate_plot <- ggplot(rf_predictions_entire_prob) +
   aes(y = climate_description, x = .pred_Yes) +
-  stat_halfeye()
+  stat_halfeye() +
+  xlab("Probability that Species can be Banked") +
+  ylab("Climate Description") +
+  theme_light()
+  
 print(climate_plot)
+ggsave("climate_plot.png", width = 6, height = 4, dpi = 300)
+
 
 #Important Regions
 important_regions <- subset(rf_predictions_entire_prob, region %in% 
@@ -195,22 +201,43 @@ region_plot <- ggplot(important_regions) +
   geom_violin(trim = FALSE) +
   stat_summary(fun=mean, geom="point", size=2, color = "red") +
   xlab("Region") +
-  ylab("Bankable Prediction")
-print(region_plot)
+  ylab("Probability that Species can be Banked") +
+  theme_light()
+print(region_plot) 
+ggsave("regions_plot.png", width = 6, height = 4, dpi = 300)
 
 #Threat Plot
 threat_plot3 <- ggplot(rf_predictions_entire_prob, aes(x = .pred_Yes, y = threat_prediction_prob)) +
   geom_hex(bins = 25) +
-  xlab("Probability of a 'Yes' Prediction") +
-  ylab("Threat Probability")
+  xlab("Probability that Species can be Banked") +
+  ylab("Threat Probability") +
+  theme_light()
 
 print(threat_plot3)
+ggsave("threat_plot.png", width = 6, height = 4, dpi = 300)
 
 #Lifeform plot
+#transforming woody perreials to terrestrial as that is what they are:
+rf_predictions_entire_prob$lifeform_category[rf_predictions_entire_prob$lifeform_category == "woody perennial"] <- "herbaceous perennial"
+rf_predictions_entire_prob$lifeform_category[rf_predictions_entire_prob$lifeform_category == "herbaceous perennial"] <- "terrestrial"
+
 lifeform_plot <- ggplot(rf_predictions_entire_prob) +
-  aes(y = lifeform_category, x = .pred_Yes) +
-  stat_halfeye()
+  aes(y = .pred_Yes, x = lifeform_category) +
+  geom_violin(trim = FALSE) +
+  stat_summary(fun=mean, geom="point", size=2, color = "red") +
+  stat_summary(
+    fun = mean,
+    geom = "text",
+    aes(label = round(..y.., 2)),
+    vjust = -0.5, 
+    hjust = -0.4,
+    color = "black") +
+  xlab("Lifeform Category") +
+  ylab("Probability that Species can be Banked") +
+  theme_light()
+
 print(lifeform_plot)
+ggsave("lifeform_plot.png", width = 6, height = 4, dpi = 300)
 
 citation()
 R.Version()

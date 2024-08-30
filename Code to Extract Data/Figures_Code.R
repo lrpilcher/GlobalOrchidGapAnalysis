@@ -91,13 +91,13 @@ contingency_table <- table(Main_Data$threat_pred, Main_Data$seedbank_conserved)
 print(contingency_table)
 
 dimnames(contingency_table) <- list(
-  ThreatStatus = c("NA", "Not Threatened", "Threatened"),
+  ExtinctionRisk = c("NA", "Not Threatened", "Threatened"),
   ConservationStatus = c("Not Conserved", "Conserved")
 )
 
 par(cex = 0.5) 
 
-mosaic(~ ThreatStatus + ConservationStatus,
+mosaic(~ ExtinctionRisk + ConservationStatus,
        direction = c("v", "h"),
        data = contingency_table,
        shade = TRUE
@@ -187,7 +187,7 @@ print(t_test_result_2)
 
 #Creating combined plot
 #Adding Data Source column
-Main_Data$datasource <- "Threat Prediction"
+Main_Data$datasource <- "Extinction Risk Predictions"
 iucn_assessed$datasource <- "IUCN"
 #removing threat predictions from IUCN Dataset leaving only bootstrapped predictions
 iucn_assessed <- subset(iucn_assessed, select = -prediction_prob)
@@ -219,9 +219,10 @@ regions_table <- as.data.frame(regions_table)
 
 print(names(regions_table))
 names(regions_table) <- c("Region", "Species_Number")
-
+print(regions_table)
 library(gt)
 
+#Descending (Top 10)
 desc_regions_table <- regions_table %>%
   arrange(desc(Species_Number)) %>%
   slice(1:10)
@@ -233,6 +234,7 @@ desc_regions_table %>% gt() %>%
     source_note = "Data Source: World Checklist of Vascular Plants and Threat Predictions Dataset (Bachman et al,2024) "
   )  
   
+#Ascending (Bottom 10)
 asc_regions_table <- regions_table %>%
   arrange((Species_Number)) %>%
   slice(1:10)
@@ -243,6 +245,19 @@ asc_regions_table %>% gt() %>%
   tab_source_note(
     source_note = "Data Source: World Checklist of Vascular Plants and Threat Predictions Dataset (Bachman et al,2024) "
   )  
+
+#Full Regions Table:
+full_regions_table <- regions_table %>%
+  arrange(desc(Species_Number))
+
+full_regions_table %>% gt() %>%
+  tab_header(title = "Quantity of Threatened, Non-Conserved Orchid Species by Region") %>%
+  tab_source_note(
+    source_note = "Data Source: World Checklist of Vascular Plants and Threat Predictions Dataset (Bachman et al,2024) "
+  ) %>%
+gtsave("fulltable.docx")
+
+
 
 #Figure 10 - Regions with the most conserved Orchid genera
 conserved <- dplyr::filter(Main_Data, seedbank_conserved == 'Yes')
@@ -262,6 +277,16 @@ desc_genus %>% gt() %>%
     source_note = "Data Source: World Checklist of Vascular Plants and Threat Predictions Dataset (Bachman et al,2024) "
   )  
 
+#Full Data
+full_region_table <- conserved_regions %>%
+  arrange(desc(Species_Number)) 
+
+full_region_table %>% gt() %>%
+  tab_header(title = "Quantity of Conserved Orchid Species by Region") %>%
+  tab_source_note(
+    source_note = "Data Source: World Checklist of Vascular Plants and Threat Predictions Dataset (Bachman et al,2024) "
+  ) %>%
+  gtsave("fulltable2.docx")
 #Figure 10 - Top 10 Genera with threatened non conserved Orchids 
 threatened_not_conserved <- dplyr::filter(Main_Data, threat_pred == 'threatened', seedbank_conserved == 'No')
 genus <- table(threatened_not_conserved$genera)
@@ -279,7 +304,19 @@ desc_genus %>% gt() %>%
              subtitle = "Top 10 Genera with Largest number of non-conserved threatened species") %>%
   tab_source_note(
     source_note = "Data Source: World Checklist of Vascular Plants and Threat Predictions Dataset (Bachman et al,2024) "
-  )  
+  ) 
+
+#Full Data
+full_genus_table <- genus %>%
+  arrange(desc(Species_Number)) 
+
+full_genus_table %>% gt() %>%
+  tab_header(title = "Quantity of Conserved Orchid Species by Genera") %>%
+  tab_source_note(
+    source_note = "Data Source: World Checklist of Vascular Plants and Threat Predictions Dataset (Bachman et al,2024) "
+  ) %>%
+  gtsave("fulltable3.docx")
+
 
 #Figure 11 - Most conserved Orchid Genera
 conserved_genera <- dplyr::filter(Main_Data, seedbank_conserved == 'Yes')
@@ -335,7 +372,7 @@ ggplot(lifeform_table_df, aes(x= Freq, y = Var1)) +
 occurence_data <- read.csv("occurence_matrix.csv")
 
 
-ggplot(occurence_data, aes(x = bin_code, y = proportion_conserved, fill = bin_code)) +
+range_plot <- ggplot(occurence_data, aes(x = bin_code, y = proportion_conserved, fill = bin_code)) +
   geom_boxplot() +
   stat_summary(fun = mean, geom = "point", shape = 16, size = 3, color = "red") +
   labs(x = "Number of Native Species Per Country (Categories)",
@@ -346,41 +383,18 @@ ggplot(occurence_data, aes(x = bin_code, y = proportion_conserved, fill = bin_co
     labels = c("a" = " a = <20 Species", "b" = "b = <60 Species", "c" = "c = <200 species",
                "d" = "d = <800 Species", "e" = "e = <2000 Species", "f" = "f = <4000 Species", 
                "g" = "g = <6000 Species", "na" = "na = No Species"),
-    name = "Group Legend"
+    name = "Category Legend"
   ) +
   theme_light()
 
+print(range_plot)
+ggsave("range_plot.png", width = 8, height = 6)
 
-
-
-
-  
-
-
-#performing linear regression 
-model <- lm(proportion_conserved ~ native_orchids, data = occurence_data)
-
-#R squared value
-r_squared <- summary(model)$r.squared
-
-#P Value
-p_value <- summary(model)$coefficients[2,4]
-
-scatter_plot <- ggplot(occurence_data, aes(x = native_orchids, y = proportion_conserved)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = TRUE, color = "red") +
-  scale_x_log10() +
-  labs(
-    x = "Number of Native Species per Country (Logarithmic)",
-    y = "Proportion of Native Orchids Banked per Country (Linear)") +
-  theme_light()
-
-print(scatter_plot)
 
 #Comparative Data Figure
 
 orchids_assessed <- data.frame(
-  `Data_Source` = c("IUCN", "Threat Predictions"),
+  `Data_Source` = c("IUCN", "Extinction Risk Predictions"),
   `No_Orchids_Assessed` = c("6.3", "97.8")
 )
 
@@ -388,9 +402,10 @@ orchids_assessed <- as.data.frame(orchids_assessed)
 
 orchids_assessed$No_Orchids_Assessed <- as.numeric(orchids_assessed$No_Orchids_Assessed)
 
-orchids_assessed_graph <- ggplot(orchids_assessed, aes(x = Data_Source, y = No_Orchids_Assessed)) +
+orchids_assessed_graph <- ggplot(orchids_assessed, aes(x = Data_Source, y = No_Orchids_Assessed, fill = Data_Source)) +
   geom_bar(stat = "identity", position = "stack", width = 0.6) +
   labs(x = "Data Source", y = "% of Orchidaceae Family Assessed") + 
+  scale_fill_manual(values = c("#d6604d", "#fee090"))+
   scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 10)) +
   theme_light() +
   theme(
@@ -400,13 +415,14 @@ orchids_assessed_graph <- ggplot(orchids_assessed, aes(x = Data_Source, y = No_O
     axis.text.y = element_text(size = 11, colour = "black"),
     legend.text = element_text(size = 11, colour = "black"),
     legend.title = element_text(size = 12, colour = "black", face = "bold"),
-    axis.line = element_line(color = "black"))
+    axis.line = element_line(color = "black"),
+    legend.position = "none")
 
 print(orchids_assessed_graph)
 
 #
 percent_threatened <- data.frame(
-  `Data_Source` = c("IUCN", "Threat Predictions"),
+  `Data_Source` = c("IUCN", "Extinction Risk Predictions"),
   `No_Orchids_Threatened` = c("48.4", "64")
 )
 
@@ -414,9 +430,10 @@ percent_threatened <- as.data.frame(percent_threatened)
 
 percent_threatened$No_Orchids_Threatened <- as.numeric(percent_threatened$No_Orchids_Threatened)
 
-percent_threatened_graph <- ggplot(percent_threatened, aes(x = Data_Source, y = No_Orchids_Threatened)) +
+percent_threatened_graph <- ggplot(percent_threatened, aes(x = Data_Source, y = No_Orchids_Threatened, fill = Data_Source)) +
   geom_bar(stat = "identity", position = "stack", width = 0.6) +
   labs(x = "Data Source", y = "% of Assessed Orchids Threatened") + 
+  scale_fill_manual(values = c("#d6604d", "#fee090"))+
   scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 10)) +
   theme_light() +
   theme(
@@ -426,7 +443,8 @@ percent_threatened_graph <- ggplot(percent_threatened, aes(x = Data_Source, y = 
     axis.text.y = element_text(size = 11, colour = "black"),
     legend.text = element_text(size = 11, colour = "black"),
     legend.title = element_text(size = 12, colour = "black", face = "bold"),
-    axis.line = element_line(color = "black"))
+    axis.line = element_line(color = "black"),
+    legend.position = "none")
 
 print(percent_threatened_graph)
 
